@@ -32,12 +32,12 @@
         <button class="button" data-button-expert>Expert</button>
       </section>
     </article>
-    <article class="modal hide" data-modal>
-      <section class="modal__content">
-        <h2 class="modal__text" data-modal-header>You won!</h2>
+    <div class="modal hide" role="dialog" aria-modal="true" aria-labelledby="modal-header">
+      <div class="modal__content">
+        <h2 class="modal__text" id="modal-header" data-modal-header>You won!</h2>
         <button class="modal__button" data-modal-button>Play again!</button>
-      </section>
-    </article>
+      </div>
+    </div>
   </main>
   <script src="js/Game.js" type="module"></script>
 </body>
