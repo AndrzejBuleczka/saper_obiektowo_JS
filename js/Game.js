@@ -1,3 +1,5 @@
+import Cell from './Cell.js';
+
 class Game {
   #config = {
     easy: {
@@ -43,7 +45,7 @@ class Game {
     for (let row = 0; row < this.#numberOfRows; row++) {
       this.#cells[row] = [];
       for (let col = 0; col < this.#numberOfColumns; col++) {
-        this.#cells[row].push()
+        this.#cells[row].push(new Cell(row, col));
       }
     }
   }
