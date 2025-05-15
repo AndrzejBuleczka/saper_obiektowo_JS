@@ -29,8 +29,8 @@ class Game extends UI {
   #board = null;
 
   initializeGame() {
-    this.#newGame();
     this.#handleElements();
+    this.#newGame();
   }
 
   #newGame(
@@ -62,8 +62,8 @@ class Game extends UI {
 
   #renderBoard() {
     this.#cells.flat().forEach((cell) => {
-      this.#board.insertAdjacentHTML("beforeend", cell.createElement());
-      cell.element = this.getElement(cell.selector);
+      this.#board.insertAdjacentHTML('beforeend', cell.createElement());
+      cell.element = cell.getElement(cell.selector);
     });
   }
 }
