@@ -1,5 +1,5 @@
-import Cell from "./Cell.js";
-import UI from "./UI.js";
+import { Cell } from "./Cell.js";
+import { UI } from "./UI.js";
 
 class Game extends UI {
   #config = {
@@ -21,7 +21,7 @@ class Game extends UI {
   };
 
   #numberOfRows = null;
-  #numberOfColumns = null;
+  #numberOfCols = null;
   #numberOfMines = null;
 
   #cells = [];
@@ -38,31 +38,34 @@ class Game extends UI {
     cols = this.#config.easy.columns,
     mines = this.#config.easy.mines
   ) {
-    this.#numberOfColumns = rows;
+    this.#numberOfCols = rows;
     this.#numberOfRows = cols;
     this.#numberOfMines = mines;
 
     this.#generateCells();
+    this.#renderBoard();
   }
 
   #handleElements() {
-    this.#board = getElement(this.UISelectors.board);
+    this.#board = this.getElement(this.UISelectors.board);
   }
 
   #generateCells() {
+    this.#cells.length = 0;
     for (let row = 0; row < this.#numberOfRows; row++) {
       this.#cells[row] = [];
-      for (let col = 0; col < this.#numberOfColumns; col++) {
-        this.#cells[row].push(new Cell(row, col));
+      for (let col = 0; col < this.#numberOfCols; col++) {
+        this.#cells[row].push(new Cell(col, row));
       }
     }
   }
-}
 
-#renderBoard() {
-  this.#cells.flat().forEach(cell => {
-    this.#board.insertAdjacentHTML('beforeend', cell.createElement());
-  })
+  #renderBoard() {
+    this.#cells.flat().forEach((cell) => {
+      this.#board.insertAdjacentHTML("beforeend", cell.createElement());
+      cell.element = this.getElement(cell.selector);
+    });
+  }
 }
 
 window.onload = function () {

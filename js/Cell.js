@@ -1,5 +1,8 @@
-export class Cell {
+import { UI } from './UI.js';
+
+export class Cell extends UI {
   constructor(x, y) {
+    super();
     this.x = x;
     this.y = y;
     this.value = 0;
