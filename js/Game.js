@@ -25,6 +25,7 @@ class Game extends UI {
   #numberOfMines = null;
 
   #cells = [];
+  #cellsElements = null;
 
   #board = null;
 
@@ -42,8 +43,11 @@ class Game extends UI {
     this.#numberOfRows = cols;
     this.#numberOfMines = mines;
 
+    this.#setStyles();
+
     this.#generateCells();
     this.#renderBoard();
+    this.#cellsElements = this.getElements(this.UISelectors.cell);
   }
 
   #handleElements() {
@@ -62,9 +66,16 @@ class Game extends UI {
 
   #renderBoard() {
     this.#cells.flat().forEach((cell) => {
-      this.#board.insertAdjacentHTML('beforeend', cell.createElement());
+      this.#board.insertAdjacentHTML("beforeend", cell.createElement());
       cell.element = cell.getElement(cell.selector);
     });
+  }
+
+  #setStyles() {
+    document.documentElement.style.setProperty(
+      "--cells-in-row",
+      this.#numberOfCols
+    );
   }
 }
 
