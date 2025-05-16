@@ -48,10 +48,19 @@ class Game extends UI {
     this.#generateCells();
     this.#renderBoard();
     this.#cellsElements = this.getElements(this.UISelectors.cell);
+
+    this.#addCellsEventListeners();
   }
 
   #handleElements() {
     this.#board = this.getElement(this.UISelectors.board);
+  }
+
+  #addCellsEventListeners() {
+    this.#cellsElements.forEach((element) => {
+      element.addEventListener('click', this.#handleCellClick);
+      element.addEventListener('contextmenu', this.#handleCellContextMenu);
+    });
   }
 
   #generateCells() {
@@ -70,6 +79,18 @@ class Game extends UI {
       cell.element = cell.getElement(cell.selector);
     });
   }
+
+  #handleCellClick = (e) => {
+    const target = e.target;
+    const rowIndex = parseInt(target.getAttribute('data-y'), 10);
+    const colIndex = parseInt(target.getAttribute('data-x'), 10);
+
+    const cell = this.#cells[rowIndex][colIndex];
+
+    
+  };
+
+  #handleCellContextMenu = (e) => {};
 
   #setStyles() {
     document.documentElement.style.setProperty(
