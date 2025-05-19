@@ -58,8 +58,8 @@ class Game extends UI {
 
   #addCellsEventListeners() {
     this.#cellsElements.forEach((element) => {
-      element.addEventListener('click', this.#handleCellClick);
-      element.addEventListener('contextmenu', this.#handleCellContextMenu);
+      element.addEventListener("click", this.#handleCellClick);
+      element.addEventListener("contextmenu", this.#handleCellContextMenu);
     });
   }
 
@@ -82,12 +82,10 @@ class Game extends UI {
 
   #handleCellClick = (e) => {
     const target = e.target;
-    const rowIndex = parseInt(target.getAttribute('data-y'), 10);
-    const colIndex = parseInt(target.getAttribute('data-x'), 10);
+    const rowIndex = parseInt(target.getAttribute("data-y"), 10);
+    const colIndex = parseInt(target.getAttribute("data-x"), 10);
 
-    const cell = this.#cells[rowIndex][colIndex];
-
-    
+    const cell = this.#cells[rowIndex][colIndex].revealCell();
   };
 
   #handleCellContextMenu = (e) => {};
