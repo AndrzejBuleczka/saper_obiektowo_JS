@@ -95,6 +95,9 @@ class Game extends UI {
     const colIndex = parseInt(target.getAttribute("data-x"), 10);
 
     const cell = this.#cells[rowIndex][colIndex];
+
+    if (cell.isReveal) return;
+    
     cell.toggleFlag();
   };
 
