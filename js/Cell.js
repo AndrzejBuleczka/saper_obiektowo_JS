@@ -1,4 +1,4 @@
-import { UI } from './UI.js';
+import { UI } from "./UI.js";
 
 export class Cell extends UI {
   constructor(x, y) {
@@ -20,16 +20,16 @@ export class Cell extends UI {
 
   toggleFlag() {
     this.isFlagged = !this.isFlagged;
-    this.element.classList.toggle('cell--is-flag');
+    this.element.classList.toggle("cell--is-flag");
   }
 
   revealCell() {
     this.isReveal = true;
-    this.element.classList.remove('border--concave');
-    this.element.classList.add('border--revealed');
+    this.element.classList.remove("border--concave");
+    this.element.classList.add("border--revealed");
 
     if (this.isMine) {
-      this.element.classList.add('cell--is-mine');
+      this.element.classList.add("cell--is-mine");
       return;
     }
     if (this.value) {

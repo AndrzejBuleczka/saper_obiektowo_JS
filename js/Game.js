@@ -88,7 +88,15 @@ class Game extends UI {
     const cell = this.#cells[rowIndex][colIndex].revealCell();
   };
 
-  #handleCellContextMenu = (e) => {};
+  #handleCellContextMenu = (e) => {
+    e.preventDefault();
+    const target = e.target;
+    const rowIndex = parseInt(target.getAttribute("data-y"), 10);
+    const colIndex = parseInt(target.getAttribute("data-x"), 10);
+
+    const cell = this.#cells[rowIndex][colIndex];
+    cell.toggleFlag();
+  };
 
   #setStyles() {
     document.documentElement.style.setProperty(
