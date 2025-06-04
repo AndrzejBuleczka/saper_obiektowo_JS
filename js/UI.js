@@ -1,7 +1,9 @@
 export class UI {
   UISelectors = {
-    board: ["[data-board]"],
-    cell: "[data-cell]"
+    board: "[data-board]",
+    cell: "[data-cell]",
+    counter: "[data-counter]",
+    timer: "[data-timer]"
   };
 
   getElement(selector) {
