@@ -135,7 +135,7 @@ class Game extends UI {
 
     const cell = this.#cells[rowIndex][colIndex];
 
-    if (cell.isReveal) return;
+    if (cell.isReveal || this.#isGameFinished) return;
 
     if (cell.isFlagged) {
       this.#counter.increment();
@@ -150,6 +150,7 @@ class Game extends UI {
   };
 
   #clickCell(cell) {
+    if (this.#isGameFinished || cell.isFlagged) return;
     if (cell.isMine) {
       this.#endGame(false);
     }
