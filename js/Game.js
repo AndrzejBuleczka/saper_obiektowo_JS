@@ -155,7 +155,7 @@ class Game extends UI {
       this.#endGame(false);
     }
 
-    cell.revealCell();
+    this.#setCellValue(cell);
   }
 
   #revealMines() {
@@ -163,6 +163,10 @@ class Game extends UI {
       .flat()
       .filter(({ isMine }) => isMine)
       .forEach((cell) => cell.revealCell());
+  }
+
+  #setCellVelue(cell) {
+    let minesCount = 0;
   }
 
   #setStyles() {
