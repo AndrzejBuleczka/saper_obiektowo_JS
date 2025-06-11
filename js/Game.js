@@ -36,6 +36,13 @@ class Game extends UI {
   #revealedCells = 0;
 
   #board = null;
+  #buttons = {
+    modal: null,
+    easy: null,
+    normal: null,
+    expert: null,
+    reset: null
+  }
 
   initializeGame() {
     this.#handleElements();
@@ -77,6 +84,10 @@ class Game extends UI {
 
   #handleElements() {
     this.#board = this.getElement(this.UISelectors.board);
+    this.#buttons.modal = this.getElement(this.UISelectors.modal);
+    this.#buttons.easy = this.getElement(this.UISelectors.easyButton);
+    this.#buttons.normal = this.getElement(this.UISelectors.normalButton);
+    this.#buttons.expert = this.getElement(this.UISelectors.expertButton);
   }
 
   #addCellsEventListeners() {
