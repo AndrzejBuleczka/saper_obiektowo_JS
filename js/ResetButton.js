@@ -1,7 +1,7 @@
 import { UI } from "./UI.js";
 
 export class ResetButton extends UI {
-  #element = this.getElement(this.UISelectors.resetButton);
+  element = this.getElement(this.UISelectors.resetButton);
 
   changeEmotion(emotion) {
     this.element
