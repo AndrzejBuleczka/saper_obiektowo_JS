@@ -1,11 +1,11 @@
-import { UI } from "./UI.js";
+import { UI } from './UI.js';
 
 export class ResetButton extends UI {
-  element = this.getElement(this.UISelectors.resetButton);
+  element = this.getElement(this.UiSelectors.resetButton);
 
   changeEmotion(emotion) {
     this.element
-      .querySelector("use")
-      .setAttribute("href", `./assets/sprite.svg#${emotion}`);
+      .querySelector('use')
+      .setAttribute('href', `./assets/sprite.svg#${emotion}`);
   }
 }
