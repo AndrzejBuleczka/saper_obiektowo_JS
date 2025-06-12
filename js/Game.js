@@ -43,7 +43,7 @@ class Game extends UI {
     normal: null,
     expert: null,
     reset: new ResetButton()
-  }
+  };
 
   initializeGame() {
     this.#handleElements();
@@ -63,7 +63,7 @@ class Game extends UI {
     this.#numberOfMines = mines;
 
     this.#counter.setValue(this.#numberOfMines);
-    this.#timer.startTimer();
+    this.#timer.resetTimer();
 
     this.#setStyles();
 
@@ -99,14 +99,57 @@ class Game extends UI {
     });
   }
 
-  #addButtonsEventListeners() {
-    this.#buttons.easy.addEventListener("click", () => this.#handleNewGameClick(this.#config.easy.rows, this.#config.easy.columns, this.#config.easy.mines));
-    this.#buttons.normal.addEventListener("click", () => this.#handleNewGameClick(this.#config.normal.rows, this.#config.normal.columns, this.#config.normal.mines));
-    this.#buttons.expert.addEventListener("click", () => this.#handleNewGameClick(this.#config.expert.rows, this.#config.expert.columns, this.#config.expert.mines));
-    this.#buttons.reset.element.addEventListener("click", () => this.#handleNewGameClick());
+  #removeCellsEventListeners() {
+    this.#cellsElements.forEach((element) => {
+      element.removeEventListener("click", this.#handleCellClick);
+      element.removeEventListener("contextmenu", this.#handleCellContextMenu);
+    });
   }
 
-  #handleNewGameClick(rows=this.#numberOfRows, cols=this.#numberOfCols, mines=this.#numberOfMines) {
+  #addButtonsEventListeners() {
+    this.#buttons.easy.addEventListener("click", () =>
+      this.#handleNewGameClick(
+        this.#config.easy.rows,
+        this.#config.easy.columns,
+        this.#config.easy.mines
+      )
+    );
+    this.#buttons.normal.addEventListener("click", () =>
+      this.#handleNewGameClick(
+        this.#config.normal.rows,
+        this.#config.normal.columns,
+        this.#config.normal.mines
+      )
+    );
+    this.#buttons.expert.addEventListener("click", () =>
+      this.#handleNewGameClick(
+        this.#config.expert.rows,
+        this.#config.expert.columns,
+        this.#config.expert.mines
+      )
+    );
+    this.#buttons.reset.element.addEventListener("click", () =>
+      this.#handleNewGameClick()
+    );
+  }
+
+  #removeButtonsEventListeners() {
+    this.#buttons.easy.removeEventListener("click", this.#handleNewGameClick);
+    this.#buttons.normal.removeEventListener("click", this.#handleNewGameClick);
+    this.#buttons.expert.removeEventListener("click", this.#handleNewGameClick);
+    this.#buttons.reset.element.removeEventListener(
+      "click",
+      this.#handleNewGameClick
+    );
+  }
+
+  #handleNewGameClick(
+    rows = this.#numberOfRows,
+    cols = this.#numberOfCols,
+    mines = this.#numberOfMines
+  ) {
+    this.#removeCellsEventListeners();
+    this.#removeButtonsEventListeners();
     this.#newGame(rows, cols, mines);
   }
 
